@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TextField, IconButton, Fab } from '@material-ui/core';
 import { AddRounded, Delete } from '@material-ui/icons';
 
+import PriceInput from './components/PriceInput';
 import './global.css';
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     setProducts([...products, {
       _id: Math.random(),
       title: '',
-      purchasePrice: null,
+      purchasePrice: 0,
     }])
   }
 
@@ -56,12 +57,11 @@ function App() {
               value={products[index].title}
               onChange={(event ) => updateTitle(index, event.target.value)}
             />
-            
-            <TextField
-              type='text'
+
+            <PriceInput
               label='Preço de compra'
-              value={products[index].purchasePrice}
-              onChange={(event ) => updatePrice(index, event.target.value)}
+              priceValue={products[index].purchasePrice}
+              setPriceValue={ value => updatePrice(index, value)}
             />
 
             <IconButton onClick={ () => deleteProduct(product._id) } >

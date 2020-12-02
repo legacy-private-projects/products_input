@@ -1,0 +1,30 @@
+.MuiFab-root {
+  position: absolute !important;
+  bottom: 20px;
+  right: 20px;
+  background-color: #002984 !important;
+}
+.MuiFab-root svg {
+  fill: #FFF;
+  width: 75%;
+  height: auto;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+
+  padding: 7px;
+  background-color: #F7F7F7;
+  box-shadow: 0 1px 10px #888888
+}
+
+main {
+  padding: 20px;
+}
+
+.product .content {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}

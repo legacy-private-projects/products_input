@@ -3,6 +3,7 @@ import { TextField, IconButton, Fab } from '@material-ui/core';
 import { AddRounded, Delete } from '@material-ui/icons';
 
 import PriceInput from './components/PriceInput';
+import './app.css';
 import './global.css';
 
 function App() {
@@ -27,8 +28,6 @@ function App() {
 
   function updatePrice(index, value) {
     let productsCopy = [...products];
-    console.log('index = ')
-    console.log(index);
     productsCopy[index].purchasePrice = value;
     setProducts(productsCopy);
   }
@@ -37,8 +36,6 @@ function App() {
     let productsCopy = [...products];
     productsCopy[index].title = value;
     setProducts(productsCopy);
-    console.log('index = ')
-    console.log(index);
   }
   
   return (
@@ -51,22 +48,24 @@ function App() {
       <main>
         {products.map((product, index) => (
           <div key={product._id} className='product'>
-            <TextField
-              type='text'
-              label='Nome do produto'
-              value={products[index].title}
-              onChange={(event ) => updateTitle(index, event.target.value)}
-            />
+            <section className='content' >
+              <TextField
+                type='text'
+                label='Nome do produto'
+                value={products[index].title}
+                onChange={(event ) => updateTitle(index, event.target.value)}
+              />
 
-            <PriceInput
-              label='Preço de compra'
-              priceValue={products[index].purchasePrice}
-              setPriceValue={ value => updatePrice(index, value)}
-            />
+              <PriceInput
+                label='Preço de compra'
+                priceValue={products[index].purchasePrice}
+                setPriceValue={ value => updatePrice(index, value)}
+              />
 
-            <IconButton onClick={ () => deleteProduct(product._id) } >
-              <Delete />
-            </IconButton>
+              <IconButton onClick={ () => deleteProduct(product._id) } >
+                <Delete />
+              </IconButton>
+            </section>
           </div>
         ))}
 

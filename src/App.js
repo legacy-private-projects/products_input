@@ -24,30 +24,21 @@ function App() {
     setProducts(remaningProducts);
   }
 
-  useEffect(() => {
-    setProducts([
-      {
-        _id: Math.random(),
-        title: 'some title',
-        purchasePrice: 18,
-      },
-      {
-        _id: Math.random(),
-        title: 'some title',
-        purchasePrice: 18,
-      },
-      {
-        _id: Math.random(),
-        title: 'some title',
-        purchasePrice: 18,
-      },
-      {
-        _id: Math.random(),
-        title: 'some title',
-        purchasePrice: 18,
-      }
-    ])
-  }, []);
+  function updatePrice(index, value) {
+    let productsCopy = [...products];
+    console.log('index = ')
+    console.log(index);
+    productsCopy[index].purchasePrice = value;
+    setProducts(productsCopy);
+  }
+
+  function updateTitle(index, value) {
+    let productsCopy = [...products];
+    productsCopy[index].title = value;
+    setProducts(productsCopy);
+    console.log('index = ')
+    console.log(index);
+  }
   
   return (
     <div className='App'>
@@ -57,13 +48,20 @@ function App() {
         </h1>
       </header>
       <main>
-        {products.map(product => (
+        {products.map((product, index) => (
           <div key={product._id} className='product'>
-            <h2> {product.title} </h2>
+            <TextField
+              type='text'
+              label='Nome do produto'
+              value={products[index].title}
+              onChange={(event ) => updateTitle(index, event.target.value)}
+            />
+            
             <TextField
               type='text'
               label='Preço de compra'
-              value={null}
+              value={products[index].purchasePrice}
+              onChange={(event ) => updatePrice(index, event.target.value)}
             />
 
             <IconButton onClick={ product => deleteProduct(product._id) } >

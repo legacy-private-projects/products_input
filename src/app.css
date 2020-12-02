@@ -28,3 +28,7 @@ main {
   justify-content: center;
   margin-bottom: 10px;
 }
+
+.product .content .MuiTextField-root:first-of-type {
+  margin-right: 12px;
+}

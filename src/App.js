@@ -8,7 +8,7 @@ function App() {
   const [ products, setProducts ] = useState([]);
 
   function createNewProduct() {
-    setProducts([...setProducts, {
+    setProducts([...products, {
       _id: Math.random(),
       title: '',
       purchasePrice: null,

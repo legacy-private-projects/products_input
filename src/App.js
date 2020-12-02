@@ -64,7 +64,7 @@ function App() {
               onChange={(event ) => updatePrice(index, event.target.value)}
             />
 
-            <IconButton onClick={ product => deleteProduct(product._id) } >
+            <IconButton onClick={ () => deleteProduct(product._id) } >
               <Delete />
             </IconButton>
           </div>

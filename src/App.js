@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, IconButton, Fab } from '@material-ui/core';
 import { AddRounded, Delete } from '@material-ui/icons';
 
@@ -8,6 +8,7 @@ import './global.css';
 
 function App() {
   const [ products, setProducts ] = useState([]);
+  const [ averagePrice, setAveragePrice ] = useState(0);
 
   function createNewProduct() {
     setProducts([...products, {
@@ -37,13 +38,32 @@ function App() {
     productsCopy[index].title = value;
     setProducts(productsCopy);
   }
+
+  useEffect(() => {
+    let totalPrice = 0;
+    products.forEach( product => {
+      totalPrice += parseFloat(product.purchasePrice);
+    });
+    console.log(totalPrice)
+    if (products.length > 0)
+      setAveragePrice(totalPrice/products.length)
+  }, [products]);
   
   return (
     <div className='App'>
       <header>
         <h1>
-          Média
+          Custo médio:
         </h1>
+
+        <h2>
+          {
+            averagePrice.toLocaleString(
+              'pt-br',
+              {style:'currency', currency:'brl'}
+            )
+          }
+        </h2>
       </header>
       <main>
         {products.map((product, index) => (

@@ -13,10 +13,15 @@
 header {
   display: flex;
   justify-content: center;
+  align-items: center;
 
   padding: 7px;
   background-color: #F7F7F7;
   box-shadow: 0 1px 10px #888888
+}
+
+header h1 {
+  margin-right: 6px;
 }
 
 main {

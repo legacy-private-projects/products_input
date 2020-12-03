@@ -8,6 +8,7 @@ import './global.css';
 
 function App() {
   const [ products, setProducts ] = useState([]);
+  const [ amount, setAmount] = useState(0);
   const [ averagePrice, setAveragePrice ] = useState(0);
 
   function createNewProduct() {
@@ -44,14 +45,15 @@ function App() {
     products.forEach( product => {
       totalPrice += parseFloat(product.purchasePrice);
     });
-    console.log(totalPrice)
-    if (products.length > 0)
-      setAveragePrice(totalPrice/products.length)
-  }, [products]);
+
+    if (amount > 0)
+      setAveragePrice(totalPrice/amount)
+  }, [products, amount]);
   
   return (
     <div className='App'>
       <header>
+
         <h1>
           Custo médio:
         </h1>
@@ -66,6 +68,17 @@ function App() {
         </h2>
       </header>
       <main>
+        <TextField
+          className='amount'
+          type='number'
+          label='Quantidade'
+          value={amount}
+          onChange={ event => {
+            if(event.target.value > 0)
+              setAmount(event.target.value)
+          }}
+        />
+
         {products.map((product, index) => (
           <div key={product._id} className='product'>
             <section className='content' >
@@ -73,7 +86,7 @@ function App() {
                 type='text'
                 label='Nome do produto'
                 value={products[index].title}
-                onChange={(event ) => updateTitle(index, event.target.value)}
+                onChange={ event => updateTitle(index, event.target.value)}
               />
 
               <PriceInput

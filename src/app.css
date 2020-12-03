@@ -25,7 +25,16 @@ header h1 {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
+}
+
+.amount {
+  left: -121px;
+  margin-bottom: 20px !important;
 }
 
 .product .content {
